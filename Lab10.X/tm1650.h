@@ -81,3 +81,4 @@ void TM1650_init(void);
 void TM1650_setDigit(uint8_t digit, char data, int dp);
 void putch(char hold);
 void clearBar(void);
+void TM1650_fastPrintNum(uint16_t num);

@@ -9,7 +9,9 @@
 #include <xc.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <stdio.h>
 #include "i2c.h"
+#include <math.h>
 #include "tm1650.h"
 #define _XTAL_FREQ 4000000
 static int variable;
@@ -31,10 +33,6 @@ static void writeData(uint8_t address, uint8_t data) {
     while(status == I2C1_MESSAGE_PENDING);                     //waits for i2c to complete
 }
 void TM1650_init(void){
-//       tm1650_config_t config;
-//config.dispType = 1;
-//config.on = 1;
-//writeData(0x24, config.value);
     writeData(0x24, 1);                         //Initializes tm1650 by writing 1 to start address
     TM1650_setDigit(0, 32, 0);
     TM1650_setDigit(1, 32, 0);
@@ -70,4 +68,38 @@ void clearBar(void) {
     TM1650_setDigit(1, 32, 0);
     TM1650_setDigit(2, 32, 0);
     TM1650_setDigit(3, 32, 0);                                  //clears led and turns all of them off
+}
+void TM1650_fastPrintNum(uint16_t num) {
+    if(num > 9999) {
+        TM1650_setDigit(0, 'E', 0);
+        TM1650_setDigit(1, 'E', 0);
+        TM1650_setDigit(2, 'E', 0);
+        TM1650_setDigit(3, 'E', 0);                     //Sets it to EEEE if over 9999
+    } else {        
+        int ones = (num % 10) + 48;
+        int tens = ((num/10) % 10) + 48;
+        int hunds = ((num/100) % 10) + 48;
+        int thous = ((num/1000)) + 48;                  //Set 4-digits up to digits of number using remainders and adding 48 for ascii
+        
+        if(tens == 48 & hunds == 48 & thous == 48) {
+            tens = 32;
+        }
+        if(hunds == 48 & thous == 48) {
+            hunds = 32;
+        }
+        if(thous == 48) {
+            thous = 32;
+        }                                   //These if Statements clear any LED not being used by a number
+                                            //Also makes sure it gets cleared when it is actually being used; 32 clears the LED
+        
+        TM1650_setDigit(3, ones, 0);
+        TM1650_setDigit(2, tens, 0);
+        TM1650_setDigit(1, hunds, 0);
+        TM1650_setDigit(0, thous, 0);
+    }
+    
+//    TM1650_setDigit(0, 32, 0);
+//    TM1650_setDigit(1, 32, 0);
+//    TM1650_setDigit(2, 32, 0);
+//    TM1650_setDigit(3, 32, 0);              //Clears any LEDS not being used but still on
 }
