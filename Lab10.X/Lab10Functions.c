@@ -11,7 +11,7 @@
 #include "Lab10Header.h"
 #pragma config WDTE = OFF
 #define _XTAL_FREQ 4000000
-extern int value;
+extern int count;
 
 void LED_init() {
     T2CLKCON = 0x01;
