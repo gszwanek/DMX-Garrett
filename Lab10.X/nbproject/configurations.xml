@@ -27,6 +27,8 @@
       <itemPath>dmx.h</itemPath>
       <itemPath>buttons.h</itemPath>
       <itemPath>controller.h</itemPath>
+      <itemPath>beat.h</itemPath>
+      <itemPath>led.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -59,6 +61,8 @@
       <itemPath>dmx.c</itemPath>
       <itemPath>buttons.c</itemPath>
       <itemPath>controller.c</itemPath>
+      <itemPath>beat.c</itemPath>
+      <itemPath>led.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -201,7 +205,7 @@
       </XC8-config-global>
       <snap>
         <property key="AutoSelectMemRanges" value="auto"/>
-        <property key="Freeze Peripherals" value="true"/>
+        <property key="Freeze Peripherals" value="false"/>
         <property key="ToolFirmwareFilePath"
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>

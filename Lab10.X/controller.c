@@ -10,9 +10,17 @@
 #include "buttons.h"
 #include "clock.h"
 #include "tm1650.h"
+#include "beat.h"
+#include "led.h"
 #include <stdio.h>
+#include <xc.h>
+
+extern int count;
 
 static time_t lastTime = 0;
+static time_t lastActiveTime;
+
+//extern static bool wasActive;
 
 uint16_t address = 1;
 
@@ -46,26 +54,47 @@ void address_dec() {
     TM1650_fastPrintNum(address);
 }
 
+
+
 void CONTROLLER_task() {
 
     time_t time = CLOCK_getTime();
 
     // only run every 10 ms
-    if (time - lastTime < 125)
+    if (time - lastTime < 140)
         return;
 
     lastTime = time;
-
+    bool active = true;
+    
     if (BUTTONS_isClicked(up)) {
         address_inc();
 
     } else if (BUTTONS_isClicked(down)) {
         address_dec();
     }
-    if (BUTTONS_isHeld(up)) {
+    else if (BUTTONS_isHeld(up)) {
         address_inc();
 
     } else if (BUTTONS_isHeld(down)) {
         address_dec();
+    } else {
+        active = false;
     }
+
+    //add
+
+    if(active)
+    {
+        TM1650_enable(true);
+        lastActiveTime = CLOCK_getTime();
+    }
+    if(CLOCK_getTime() - lastActiveTime >= 5000)
+    {
+        TM1650_enable(false);
+        lastActiveTime = CLOCK_getTime() - 5001;
+    }
+       
+    //end
 }
+

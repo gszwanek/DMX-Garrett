@@ -30,5 +30,6 @@ void BUTTONS_task();
 void BUTTONS_init();
 bool BUTTONS_isClicked(button_t* button);
 bool BUTTONS_isHeld(button_t* button);
+//bool BUTTONS_notPressed(button_t * button);
 extern button_t *up, *down, *enter, *menu;
 #endif

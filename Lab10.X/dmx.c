@@ -1,10 +1,11 @@
       
 #include <xc.h>
 #include "mcc_generated_files/eusart1.h"
+#include "clock.h"
 extern int count = 0;
 extern uint8_t buffer[514];  
-
-
+static bool task1;
+extern bool DMX_var;
 
 void DMX_receive_handler() {
         if(RC1STAbits.OERR == 1) {
@@ -18,9 +19,27 @@ void DMX_receive_handler() {
         } else { 
             buffer[count] = dummy; 
             count++;                    //Sets buffer to current value of RC1REG and increments it
+            task1 = true;
         }
 }
 
 void DMX_init() {
     EUSART1_SetRxInterruptHandler(DMX_receive_handler);
+}
+static time_t lastTime;
+void DMX_task() {
+    time_t time = CLOCK_getTime();
+
+    // only run every 10 ms
+    if (time - lastTime < 1000)
+        return;
+
+    lastTime = time;
+    
+    if(task1 == true) {
+        DMX_var = true;
+        task1 = false;
+    } else {
+        DMX_var = false;
+    }
 }

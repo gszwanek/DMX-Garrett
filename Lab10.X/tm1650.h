@@ -28,53 +28,11 @@
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-#ifndef XC_HEADER_TEMPLATE_H
-#define	XC_HEADER_TEMPLATE_H
+#ifndef TM1650_H
+#define	TM1650_H
 
-#include <xc.h> // include processor files - each processor file is guarded.  
+#include <stdbool.h>
 
-// TODO Insert appropriate #include <>
-
-// TODO Insert C++ class definitions if appropriate
-
-// TODO Insert declarations
-
-// Comment a function and leverage automatic documentation with slash star star
-/**
-    <p><b>Function prototype:</b></p>
-  
-    <p><b>Summary:</b></p>
-
-    <p><b>Description:</b></p>
-
-    <p><b>Precondition:</b></p>
-
-    <p><b>Parameters:</b></p>
-
-    <p><b>Returns:</b></p>
-
-    <p><b>Example:</b></p>
-    <code>
- 
-    </code>
-
-    <p><b>Remarks:</b></p>
- */
-// TODO Insert declarations or function prototypes (right here) to leverage 
-// live documentation
-
-#ifdef	__cplusplus
-extern "C" {
-#endif /* __cplusplus */
-
-    // TODO If C++ is being used, regular C code needs function names to have C 
-    // linkage so the functions can be used by the c code. 
-
-#ifdef	__cplusplus
-}
-#endif /* __cplusplus */
-
-#endif	/* XC_HEADER_TEMPLATE_H */
 
 static void writeData(uint8_t address, uint8_t data);
 void TM1650_init(void);
@@ -82,3 +40,7 @@ void TM1650_setDigit(uint8_t digit, char data, int dp);
 void putch(char hold);
 void clearBar(void);
 void TM1650_fastPrintNum(uint16_t num);
+void TM1650_enable(bool enable);
+bool TM1650_isEnabled();
+#endif	/* XC_HEADER_TEMPLATE_H */
+

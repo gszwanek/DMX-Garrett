@@ -4,20 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Garrett/Documents/GitHub/DMX-Garrett/Lab10.X/buttons.c</file>
-            <file>file:/C:/Users/Garrett/Documents/GitHub/DMX-Garrett/Lab10.X/mcc_generated_files/eusart1.c</file>
+            <file>file:/C:/Users/Garrett/Documents/GitHub/DMX-Garrett/Lab10.X/beat.c</file>
             <file>file:/C:/Users/Garrett/Documents/GitHub/DMX-Garrett/Lab10.X/buttons.h</file>
             <file>file:/C:/Users/Garrett/Documents/GitHub/DMX-Garrett/Lab10.X/main.c</file>
-            <file>file:/C:/Users/Garrett/Documents/GitHub/DMX-Garrett/Lab10.X/dmx.h</file>
-            <file>file:/C:/Users/Garrett/Documents/GitHub/DMX-Garrett/Lab10.X/clock.c</file>
-            <file>file:/C:/Users/Garrett/Documents/GitHub/DMX-Garrett/Lab10.X/Lab10Functions.c</file>
-            <file>file:/C:/Users/Garrett/Documents/GitHub/DMX-Garrett/Lab10.X/dmx.c</file>
-            <file>file:/C:/Users/Garrett/Documents/GitHub/DMX-Garrett/Lab10.X/tm1650.c</file>
-            <file>file:/C:/Users/Garrett/Documents/GitHub/DMX-Garrett/Lab10.X/controller.h</file>
-            <file>file:/C:/Users/Garrett/Documents/GitHub/DMX-Garrett/Lab10.X/Lab10Header.h</file>
             <file>file:/C:/Users/Garrett/Documents/GitHub/DMX-Garrett/Lab10.X/tm1650.h</file>
             <file>file:/C:/Users/Garrett/Documents/GitHub/DMX-Garrett/Lab10.X/controller.c</file>
-            <file>file:/C:/Program%20Files%20(x86)/Microchip/xc8/v2.05/pic/sources/c99/common/Umul8.c</file>
-            <file>file:/C:/Users/Garrett/Documents/GitHub/DMX-Garrett/Lab10.X/mcc_generated_files/interrupt_manager.c</file>
+            <file>file:/C:/Users/Garrett/Documents/GitHub/DMX-Garrett/Lab10.X/clock.c</file>
+            <file>file:/C:/Users/Garrett/Documents/GitHub/DMX-Garrett/Lab10.X/tm1650.c</file>
+            <file>file:/C:/Users/Garrett/Documents/GitHub/DMX-Garrett/Lab10.X/controller.h</file>
+            <file>file:/C:/Users/Garrett/Documents/GitHub/DMX-Garrett/Lab10.X/led.h</file>
         </group>
     </open-files>
 </project-private>

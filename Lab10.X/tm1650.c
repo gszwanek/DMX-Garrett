@@ -10,11 +10,15 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include "i2c.h"
 #include <math.h>
 #include "tm1650.h"
+#include "controller.h"
+#include "buttons.h"
 #define _XTAL_FREQ 4000000
 static int variable;
+static bool enabled;
 
 
 
@@ -32,13 +36,7 @@ static void writeData(uint8_t address, uint8_t data) {
     I2C1_MasterWrite(&data, 1, address, &status);               //writes to address and data with status
     while(status == I2C1_MESSAGE_PENDING);                     //waits for i2c to complete
 }
-void TM1650_init(void){
-    writeData(0x24, 1);                         //Initializes tm1650 by writing 1 to start address
-    TM1650_setDigit(0, 32, 0);
-    TM1650_setDigit(1, 32, 0);
-    TM1650_setDigit(2, 32, 0);
-    TM1650_setDigit(3, 32, 0);                  //Clears led so anything saved will reset
-}
+
 void TM1650_setDigit(uint8_t digit, char data, int dp) {
     
     if(dp == 1) {
@@ -97,9 +95,23 @@ void TM1650_fastPrintNum(uint16_t num) {
         TM1650_setDigit(1, hunds, 0);
         TM1650_setDigit(0, thous, 0);
     }
-    
-//    TM1650_setDigit(0, 32, 0);
-//    TM1650_setDigit(1, 32, 0);
-//    TM1650_setDigit(2, 32, 0);
-//    TM1650_setDigit(3, 32, 0);              //Clears any LEDS not being used but still on
+}
+void TM1650_enable(bool enable) {
+    if(enable == true) {
+        enabled = true;
+        writeData(0x24, 1);  
+    } else if(enable == false) {
+        enabled = false;
+        writeData(0x24, 0);
+    }
+}
+bool TM1650_isEnabled() {
+    return enabled;
+}
+void TM1650_init(void){
+    TM1650_enable(true);                      //Initializes tm1650 by writing 1 to start address
+    TM1650_setDigit(0, 32, 0);
+    TM1650_setDigit(1, 32, 0);
+    TM1650_setDigit(2, 32, 0);
+    TM1650_setDigit(3, 32, 0);                  //Clears led so anything saved will reset
 }

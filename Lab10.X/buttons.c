@@ -17,7 +17,6 @@
 #define HOLD_TIME 500
 
 
-
 static button_t buttons[BUTTON_COUNT];
 button_t *up, *down, *enter, *menu;
 static time_t lastTime = 0;
