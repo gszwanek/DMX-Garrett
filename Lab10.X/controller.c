@@ -16,11 +16,8 @@
 #include <xc.h>
 
 extern int count = 1;
-
 static time_t lastTime = 0;
 static time_t lastActiveTime;
-
-//extern static bool wasActive;
 
 uint16_t address = 1;
 
@@ -54,8 +51,6 @@ void address_dec() {
     TM1650_fastPrintNum(count);
 }
 
-
-
 void CONTROLLER_task() {
 
     time_t time = CLOCK_getTime();
@@ -66,14 +61,13 @@ void CONTROLLER_task() {
 
     lastTime = time;
     bool active = true;
-    
+
     if (BUTTONS_isClicked(up)) {
         address_inc();
 
     } else if (BUTTONS_isClicked(down)) {
         address_dec();
-    }
-    else if (BUTTONS_isHeld(up)) {
+    } else if (BUTTONS_isHeld(up)) {
         address_inc();
 
     } else if (BUTTONS_isHeld(down)) {
@@ -84,17 +78,15 @@ void CONTROLLER_task() {
 
     //add
 
-    if(active)
-    {
+    if (active) {
         TM1650_enable(true);
         lastActiveTime = CLOCK_getTime();
     }
-    if(CLOCK_getTime() - lastActiveTime >= 5000)
-    {
+    if (CLOCK_getTime() - lastActiveTime >= 5000) {
         TM1650_enable(false);
-        lastActiveTime = CLOCK_getTime() - 5001;
+        lastActiveTime = CLOCK_getTime() - 5001; //turns led off if no buttons pressed
     }
-       
+
     //end
 }
 

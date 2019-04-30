@@ -19,7 +19,7 @@ void DMX_receive_handler() {
         } else { 
             buffer[count] = dummy; 
             count++;                    //Sets buffer to current value of RC1REG and increments it
-            task1 = true;
+            task1 = true;               //variable to check  if dmx is received
         }
 }
 
@@ -37,9 +37,9 @@ void DMX_task() {
     lastTime = time;
     
     if(task1 == true) {
-        DMX_var = true;
-        task1 = false;
+        DMX_var = true;                 //sets second variable to true when dmx is still being received
+        task1 = false;                  //sets first check of dmx to false so it can be checked again
     } else {
-        DMX_var = false;
+        DMX_var = false;                //sets second check to false if still no dmx received
     }
 }

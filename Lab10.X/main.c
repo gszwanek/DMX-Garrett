@@ -31,13 +31,13 @@ void main(void) {
     TM1650_init();
     BUTTONS_init();
     CONTROLLER_init();
-    BEAT_init();
+    BEAT_init();                //Initializes everything
     TRISCbits.TRISC5 = 0;
     while (1) {
         BUTTONS_task();
         CONTROLLER_task();
         BEAT_task();
-        DMX_task();
+        DMX_task();                 //Calls tasks for dmx, beat, buttons, etc.
 
         if (DMX_var == true) {
             uint8_t r = buffer[1]; //Channel 1 of DMX (red)
@@ -46,7 +46,7 @@ void main(void) {
             uint8_t w = buffer[4]; //Channel 4 "  "   (white)
             LED_setColor(b, w, g, r); //Sets LED to channel values
         } else {
-            soundTask();
-        }
+            soundTask();                                                        //If dmx being received, outputs channel values
+        }                                                                       //If no dmx, turn on sound and beat detection
     }
 }
