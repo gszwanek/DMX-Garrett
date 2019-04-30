@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <xc.h>
 
-extern int count;
+extern int count = 1;
 
 static time_t lastTime = 0;
 static time_t lastActiveTime;
@@ -25,33 +25,33 @@ static time_t lastActiveTime;
 uint16_t address = 1;
 
 void CONTROLLER_init() {
-    TM1650_fastPrintNum(address);
+    TM1650_fastPrintNum(count);
 }
 
 /**
  * Increments the address and updates the display
  */
 void address_inc() {
-    if (address == 512)
-        address = 1;
+    if (count == 512)
+        count = 1;
     else
-        address++;
+        count++;
 
     // update the display
-    TM1650_fastPrintNum(address);
+    TM1650_fastPrintNum(count);
 }
 
 /**
  * Decrements the address and updates the display
  */
 void address_dec() {
-    if (address == 1)
-        address = 512;
+    if (count == 1)
+        count = 512;
     else
-        address--;
+        count--;
 
     // update the display
-    TM1650_fastPrintNum(address);
+    TM1650_fastPrintNum(count);
 }
 
 
